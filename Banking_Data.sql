@@ -5,7 +5,7 @@ select * from customers;
 select * from employees;
 select * from transactions;
 
-# (1).. Vikash Kumar Bind
+# 1: Write a query to list all customers who haven't made any transactions in the last year. 
 
 SELECT c.customer_id,CONCAT(c.first_name, ' ', c.last_name) AS full_name,c.email,c.phone,c.city,c.state
 FROM Customers c
@@ -14,7 +14,7 @@ LEFT JOIN Transactions t ON a.account_number = t.account_number
 WHERE t.transaction_date < DATE_SUB(YEAR(transaction_date),INTERVAL 1 YEAR)OR t.transaction_date IS NULL;
 
 
-# (2).. Vikash Kumar Bind
+# 2: Summarize the total transaction amount per account per month.
 
 SELECT account_number, extract(month from transaction_date) AS transaction_month,
                          extract(year from transaction_date) AS transaction_year, 
@@ -23,7 +23,7 @@ FROM Transactions
 GROUP BY account_number, transaction_month, transaction_year
 order by account_number,transaction_year,transaction_month;
 
-# (3).. Vikash Kumar Bind
+# 3: Rank branches based on the total amount of deposits made in the last quarter.
 
 SELECT b.branch_id, b.branch_name, SUM(t.amount) AS total_deposits, RANK() OVER (ORDER BY SUM(t.amount) DESC) AS branch_rank
 FROM Branch b
@@ -35,7 +35,7 @@ GROUP BY b.branch_id, b.branch_name
 order by total_deposits DESC;
 
 
-# (4).. Vikash Kumar Bind
+# 4: Find the name of the customer who has deposited the highest amount.
 
 SELECT c.customer_id, CONCAT(c.first_name, ' ', c.last_name) AS full_name, SUM(t.amount) AS total_deposit
 FROM Customers c
@@ -45,7 +45,8 @@ WHERE t.transaction_type = 'Deposit'
 GROUP BY c.customer_id, c.first_name, c.last_name
 ORDER BY total_deposit DESC limit 1;
 
-# (5).. Vikash Kumar Bind
+# 5: Identify any accounts that have made more than two transactions in a single day, 
+#     which could indicate fraudulent activity.
 
 SELECT t.account_number, 
     CAST(t.transaction_date AS DATE) AS transaction_day, 
@@ -54,7 +55,7 @@ FROM Transactions t
 GROUP BY t.account_number, CAST(t.transaction_date AS DATE)
 HAVING COUNT(*) >2;
 
-# (6).. Vikash Kumar Bind
+# 6: Calculate the average number of transactions per customer per account per month over the last year.
 SELECT c.customer_id, t.account_number, 
 	month(t.transaction_date) AS transaction_month, year(t.transaction_date) as transaction_year,
     COUNT(*) AS total_transactions,
@@ -63,7 +64,7 @@ FROM Customers c JOIN Accounts a ON c.customer_id = a.customer_id JOIN Transacti
 WHERE t.transaction_date >= DATE_sub(curdate(), interval 1 year)
 GROUP BY c.customer_id, t.account_number, transaction_month,transaction_year;
 
-# (7).. Vikash Kumar Bind
+# 7: Write a query to find the daily transaction volume (total amount of all transactions) for the past month.
 
 SELECT 
     CAST(transaction_date AS DATE) AS transaction_day, 
@@ -73,7 +74,9 @@ WHERE transaction_date >= DATE_sub(MONTH(transaction_date), interval 1 month)
 GROUP BY transaction_day;
 
 
-# (8).. Vikash kumar Bind
+# 8: Calculate the total transaction amount performed by each age group in the past year. 
+#     (Age groups: 0-17, 18-30, 31-60, 60+)
+
 SELECT 
     CASE 
         WHEN YEAR(CURDATE()) - YEAR(c.date_of_birth) BETWEEN 0 AND 17 THEN '0-17'
@@ -94,7 +97,7 @@ GROUP BY
     END;
 
 
-# (9).. Vikash Kumar Bind
+# 9: Find the branch with the highest average account balance.
 
 SELECT  
     b.branch_id, 
@@ -107,7 +110,7 @@ ORDER BY avg_balance DESC limit 1;
 
 
 
-# (10).. Vikash Kumar Bind
+# 10: Calculate the average balance per customer at the end of each month in the last year.
 SELECT 
     c.customer_id, 
     month(a.created_at) AS month, year(a.created_at) AS year,
