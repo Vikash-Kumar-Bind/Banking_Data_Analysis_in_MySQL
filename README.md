@@ -3,25 +3,25 @@ This project has been an incredible learning experience, combining data analysis
 
 Key Objectives:
 ----------------
-->Analyzing customer activity to identify engagement opportunities.
-->Ranking branches based on deposit performance.
-->Detecting potential fraudulent activities through transaction analysis.
-->Providing insights into customer demographics and financial behavior.
+* Analyzing customer activity to identify engagement opportunities.
+* Ranking branches based on deposit performance.
+* Detecting potential fraudulent activities through transaction analysis.
+* Providing insights into customer demographics and financial behavior.
 
 Insights Gained:
 ----------------
-->Identified customers with no transactions in the last year, enabling targeted re-engagement strategies.
-->Ranked branches based on total deposits, uncovering high-performing locations.
-->Detected unusual transaction patterns, aiding in fraud prevention.
-->Analyzed transaction trends by age group to tailor financial products better.
+* Identified customers with no transactions in the last year, enabling targeted re-engagement strategies.
+* Ranked branches based on total deposits, uncovering high-performing locations.
+* Detected unusual transaction patterns, aiding in fraud prevention.
+* Analyzed transaction trends by age group to tailor financial products better.
 
 Technologies Used:
 ------------------
-->SQL for querying and analyzing transactional data.
-->Comprehensive reporting on customer and branch performance.
+* SQL for querying and analyzing transactional data.
+* Comprehensive reporting on customer and branch performance.
 
 Outcomes:
 ---------
-->Enhanced customer engagement strategies.
-->Improved branch performance insights.
-->Strengthened fraud detection mechanisms.
+* Enhanced customer engagement strategies.
+* Improved branch performance insights.
+* Strengthened fraud detection mechanisms.
